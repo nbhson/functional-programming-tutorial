@@ -35,13 +35,26 @@ Cụ thể hơn:
 
 > **Tóm lại:** Mặc dù `console.log` có vẻ vô hại và rất hữu ích để debug, nhưng xét về mặt lý thuyết FP nghiêm ngặt, nó là một hành động làm thay đổi thế giới bên ngoài hàm, nên nó là **Side Effect**.
 
-## Tại sao Side Effect lại "xấu"?
+## TypeScript Perspective: Void Return Type
 
-### Khó debug
-Nếu hàm A thay đổi biến `user`, và hàm B cũng đọc biến `user`, thứ tự chạy của A và B sẽ quyết định kết quả chương trình. Đây là nguồn gốc của những con bug "lúc chạy lúc không" (Heisenbug).
+Trong TypeScript, kiểu dữ liệu `void` thường là dấu hiệu nhận biết một hành động có Side Effect (bởi vì nếu hàm không trả về gì, thì chắc chắn nó phải làm gì đó "bên ngoài" thì mới có ý nghĩa).
 
-### Khó test & bảo trì
-Muốn test một hàm có side effect (ví dụ gọi API), bạn phải Mock server, giả lập network... rất tốn công.
+```typescript
+// Pure: Trả về giá trị mới
+function add(a: number, b: number): number {
+  return a + b;
+}
+
+// Impure: Trả về void -> Cảnh báo có Side Effect!
+function logData(data: string): void {
+  console.log(data); // Side effect: IO
+}
+
+function saveUser(user: User): void {
+  db.save(user); // Side effect: Database IO
+}
+```
+Nhìn vào `void`, ta biết ngay cần cẩn trọng khi sử dụng hàm này.
 
 ## Triết lý của FP: "Controlled Side Effects"
 

@@ -36,6 +36,24 @@ calculateTax(100, 0.1); // Luôn là 10
 calculateTax(100, 0.1); // Luôn là 10, dù chạy 1 tỷ lần
 ```
 
+## TypeScript Perspective: Typing Pure Functions
+
+Trong TypeScript, chúng ta có thể làm cho Pure Function an toàn hơn nữa bằng cách khai báo rõ kiểu dữ liệu.
+
+```typescript
+// Explicit Type Signature
+function add(a: number, b: number): number {
+  return a + b;
+}
+
+// Readonly Arguments (quan trọng!)
+// Để đảm bảo hàm KHÔNG THỂ thay đổi tham số đầu vào (Mutation unsafe)
+function sumArray(numbers: ReadonlyArray<number>): number {
+  // numbers.push(1); // Lỗi ngay lập tức! Typescript bảo vệ bạn.
+  return numbers.reduce((acc, n) => acc + n, 0);
+}
+```
+
 ## Tại sao cần Pure Functions? (Giá trị cốt lõi)
 
 ### 1. Predictability (Dễ đoán)
@@ -58,5 +76,3 @@ memoizedTax(100, 0.1); // Trả về ngay kết quả từ cache, không cần t
 
 ### 4. Concurrency (An toàn đa luồng)
 Pure Function không đụng vào biến global, nên bạn có thể chạy nó trên 100 luồng cùng lúc mà không sợ xung đột dữ liệu (Race Condition).
-
-> **Tóm lại:** Pure Function mang lại sự **AN TÂM**. Bạn gọi nó và biết chắc chắn nó sẽ trả về cái gì và không phá hỏng cái gì khác.

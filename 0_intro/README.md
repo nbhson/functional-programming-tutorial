@@ -44,4 +44,12 @@ console.log(sum); // 12
 ## Chuẩn bị tâm thế
 Học FP giống như học lái xe ngược chiều vậy. Ban đầu sẽ rất khó chịu vì bạn không được dùng những công cụ quen thuộc (`for`, `let`, `push`...). Nhưng khi đã quen, bạn sẽ thấy nó mang lại sự tự do và an tâm tuyệt đối.
 
+## TypeScript Perspective (Góc nhìn TypeScript)
+
+Mặc dù khóa học này viết bằng JavaScript cho dễ hiểu, nhưng **TypeScript** là cặp bài trùng hoàn hảo với FP.
+*   **Type Safety:** Đảm bảo Input/Output của hàm đúng như mong đợi.
+*   **Readonly:** Ngăn chặn việc thay đổi dữ liệu (Mutation) ngay từ lúc gõ code.
+
+Trong các bài tiếp theo, mình sẽ bổ sung thêm các ví dụ minh họa bằng TypeScript để bạn thấy sức mạnh của nó.
+
 Hãy bắt đầu hành trình từ những khái niệm cốt lõi nhất!
